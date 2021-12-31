@@ -33,7 +33,7 @@ def call() {
 
       stage('Publish Artifacts') {
         steps {
-          sh 'Publish Artifacts'
+          sh 'echo Publish Artifacts'
         }
       }
 
