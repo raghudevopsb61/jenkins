@@ -31,6 +31,12 @@ def call() {
         }
       }
 
+      stage('Publish Artifacts') {
+        steps {
+          sh 'Publish Artifacts'
+        }
+      }
+
     }
 
     post {
