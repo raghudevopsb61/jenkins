@@ -40,6 +40,7 @@ def call() {
             //common.publishArtifacts()
             println 'Publish Artifacts'
           }
+          sh 'env'
         }
       }
 
