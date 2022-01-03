@@ -13,7 +13,7 @@ def call() {
       stage('Label Builds') {
         steps {
           script {
-            addShortText background: '', borderColor: 'white', color: 'red', link: '', text: 'DEMO'
+            addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: 'DEMO'
           }
         }
       }
