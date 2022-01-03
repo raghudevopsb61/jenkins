@@ -4,3 +4,8 @@ def sonarQube() {
   println 'SonarQube Testing'
 }
 
+def publishArtifacts() {
+  if(env.GIT_BRANCH == "*tag*") {
+    println 'Ran on Tag'
+  }
+}
