@@ -10,12 +10,19 @@ def call() {
 
     stages {
 
+      stage('Label Builds') {
+        steps {
+          script {
+            addShortText background: '', borderColor: 'white', color: 'red', link: '', text: 'DEMO'
+          }
+        }
+      }
+
 
       stage('Check the Code Quality') {
         steps {
           script {
             common.sonarQube()
-            addShortText background: '', borderColor: '', color: 'red', link: '', text: 'DEMO'
           }
         }
       }
