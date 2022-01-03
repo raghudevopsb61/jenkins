@@ -29,6 +29,7 @@ def call() {
         steps {
           sh 'echo Test Cases'
         }
+        sh 'env'
       }
 
       stage('Publish Artifacts') {
@@ -40,7 +41,6 @@ def call() {
             //common.publishArtifacts()
             println 'Publish Artifacts'
           }
-          sh 'env'
         }
       }
 
