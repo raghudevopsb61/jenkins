@@ -30,12 +30,11 @@ def call() {
           sh 'echo Test Cases'
           sh 'env'
         }
-
       }
 
       stage('Publish Artifacts') {
         when {
-          buildingTag()
+          expression { sh([returnStdout: true, script: 'echo ${GIT_BRANCH} | grep tags || true' ]) }
         }
         steps {
           script {
