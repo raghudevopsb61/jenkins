@@ -8,6 +8,10 @@ def call() {
       pollSCM('H/2 * * * *')
     }
 
+    environment {
+      PROG_LANG = "nodejs"
+    }
+
     stages {
 
       stage('Label Builds') {
@@ -47,8 +51,8 @@ def call() {
         }
         steps {
           script {
-            //common.publishArtifacts()
-            println 'Publish Artifacts'
+            common.prepareArtifacts()
+            common.publishArtifacts()
           }
         }
       }
