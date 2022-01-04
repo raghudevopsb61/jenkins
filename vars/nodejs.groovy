@@ -4,9 +4,9 @@ def call() {
       label "${BUILD_LABEL}"
     }
 
-    triggers {
-      pollSCM('H/2 * * * *')
-    }
+//    triggers {
+//      pollSCM('H/2 * * * *')
+//    }
 
     environment {
       PROG_LANG = "nodejs"
