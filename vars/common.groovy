@@ -26,4 +26,7 @@ def prepareArtifacts() {
       ls -ltr
     '''
   }
+  // Java
+  // Python
+  // Golang
 }
