@@ -16,6 +16,15 @@ def call() {
 
     stages {
 
+      stage('Label Builds') {
+        steps {
+          script {
+            env.gitTag = GIT_BRANCH.split('/').last()
+            addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: "${gitTag}"
+          }
+        }
+      }
+
       stage('Compile the Code') {
         steps {
           sh 'mvn compile'
