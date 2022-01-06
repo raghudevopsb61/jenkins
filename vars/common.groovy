@@ -50,7 +50,7 @@ def prepareArtifacts() {
     '''
   }
 
-  if(env.PROG_LANG_NAME == "angular" && env.PROG_LANG_VERSION == "") {
+  if(env.PROG_LANG_NAME == "angular") {
     sh '''
       cd static
       zip -r ${COMPONENT}-${gitTag}.zip * 
