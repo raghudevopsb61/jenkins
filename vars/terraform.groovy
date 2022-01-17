@@ -4,7 +4,7 @@ def call() {
       label "${BUILD_LABEL}"
     }
 
-    environment {}
+    //environment {}
 
     parameters {
       choice(name: 'ENVIRONMENT', choices: ['', 'dev', 'prod'], description: 'Pick Environment')
