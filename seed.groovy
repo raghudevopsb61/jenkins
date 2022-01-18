@@ -126,7 +126,7 @@ pipelineJob('Mutable/ALB') {
       'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
-            'url'('https://github.com/raghudevopsb61/terraform-mutable-alb.git')
+            'url'('https://github.com/raghudevopsb61/terrafrom-mutable-alb.git')
           }
         }
         'branches' {
