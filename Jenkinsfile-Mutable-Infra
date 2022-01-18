@@ -3,6 +3,10 @@ pipeline {
     label 'WORKSTATION'
   }
 
+  options {
+    ansiColor('xterm')
+  }
+
   parameters {
     choice(name: 'ENVIRONMENT', choices: ['', 'dev', 'prod'], description: 'Pick Environment')
     string(name: 'COMPONENT', defaultValue: '', description: 'Which Component?')
