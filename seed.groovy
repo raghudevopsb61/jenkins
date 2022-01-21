@@ -147,7 +147,7 @@ pipelineJob('Mutable/DB') {
       'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
-            'url'('https://github.com/raghudevopsb61/terrafrom-db.git')
+            'url'('git@github.com:raghudevopsb61/terraform-db.git')
           }
         }
         'branches' {
