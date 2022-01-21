@@ -38,4 +38,10 @@ pipeline {
 
   }
 
+  post {
+    always {
+      cleanWs()
+    }
+  }
+
 }
