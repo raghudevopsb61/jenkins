@@ -156,7 +156,8 @@ pipeline {
           git branch: 'main', url: "https://github.com/raghudevopsb61/terraform-vpc.git"
           sh '''
             terraform init -backend-config=env/${ENV}-backend.tfvars
-            #terraform destroy -auto-approve -var-file=env/${ENV}.tfvars
+            terraform destroy -auto-approve -var-file=env/${ENV}.tfvars -target=aws_nat_gateway.ngw
+            terraform destroy -auto-approve -var-file=env/${ENV}.tfvars -target=aws_eip.nat-gw
           '''
         }
       }
