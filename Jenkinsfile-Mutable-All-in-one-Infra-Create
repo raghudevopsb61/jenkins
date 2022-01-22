@@ -57,7 +57,7 @@ pipeline {
     }
 
 
-    stage('ALB-n-DB') {
+    stage('BACKEND') {
       parallel {
 
         stage('CART') {
