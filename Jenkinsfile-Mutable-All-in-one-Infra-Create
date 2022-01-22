@@ -1,0 +1,57 @@
+pipeline {
+  agent {
+    label 'WORKSTATION'
+  }
+
+  options {
+    ansiColor('xterm')
+  }
+
+  stages {
+
+    stage('VPC') {
+      steps {
+        dir('vpc') {
+          git branch: 'main', url: "https://github.com/raghudevopsb61/terraform-vpc.git"
+          sh '''
+            terraform init -backend-config=env/${ENV}-backend.tfvars
+            terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+          '''
+        }
+      }
+    }
+
+    stage('ALB-n-DB') {
+      parallel {
+
+        stage('DB') {
+          steps {
+            dir('db') {
+              git branch: 'main', url: "https://github.com/raghudevopsb61/terraform-db.git"
+              sh '''
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('ALB') {
+          steps {
+            dir('alb') {
+              git branch: 'main', url: "https://github.com/raghudevopsb61/terrafrom-mutable-alb.git"
+              sh '''
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+
+      }
+    }
+
+  }
+
+}
