@@ -56,6 +56,45 @@ pipeline {
       }
     }
 
+
+    stage('ALB-n-DB') {
+      parallel {
+
+        stage('CART') {
+          steps {
+            dir('cart') {
+              git branch: 'main', url: "https://github.com/raghudevopsb61/cart.git"
+              sh '''
+                cd terraform-mutable
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('CATALOGUE') {
+          steps {
+            dir('catalogue') {
+              git branch: 'main', url: "https://github.com/raghudevopsb61/catalogue.git"
+              sh '''
+                cd terraform-mutable
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+
+  post {
+    always {
+      cleanWs()
+    }
   }
 
 }
