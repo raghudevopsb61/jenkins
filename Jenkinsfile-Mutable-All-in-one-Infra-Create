@@ -88,6 +88,76 @@ pipeline {
           }
         }
 
+        stage('USER') {
+          steps {
+            dir('user') {
+              git branch: 'main', url: "https://github.com/raghudevopsb61/user.git"
+              sh '''
+                export TF_VAR_APP_VERSION=1.0.0
+                cd terraform-mutable
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('SHIPPING') {
+          steps {
+            dir('shipping') {
+              git branch: 'main', url: "https://github.com/raghudevopsb61/shipping.git"
+              sh '''
+                export TF_VAR_APP_VERSION=1.0.1
+                cd terraform-mutable
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('PAYMENT') {
+          steps {
+            dir('payment') {
+              git branch: 'main', url: "https://github.com/raghudevopsb61/payment.git"
+              sh '''
+                export TF_VAR_APP_VERSION=1.0.0
+                cd terraform-mutable
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('DISPATCH') {
+          steps {
+            dir('dispatch') {
+              git branch: 'main', url: "https://github.com/raghudevopsb61/dispatch.git"
+              sh '''
+                export TF_VAR_APP_VERSION=1.0.0
+                cd terraform-mutable
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+      }
+    }
+
+    stage('FRONTEND') {
+      steps {
+        dir('frontend') {
+          git branch: 'main', url: "https://github.com/raghudevopsb61/frontend.git"
+          sh '''
+                export TF_VAR_APP_VERSION=1.0.1
+                cd terraform-mutable
+                terraform init -backend-config=env/${ENV}-backend.tfvars
+                terraform apply -auto-approve -var-file=env/${ENV}.tfvars
+              '''
+        }
       }
     }
 
