@@ -14,6 +14,10 @@ def call() {
       NEXUS = credentials('NEXUS')
     }
 
+    options {
+      ansiColor('xterm')
+    }
+
     stages {
 
       stage('Label Builds') {
