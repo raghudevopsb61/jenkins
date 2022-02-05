@@ -21,6 +21,7 @@ def publishArtifacts() {
 def makeAMI() {
   sh '''
     terraform init 
+    terraform plan
   '''
 }
 
