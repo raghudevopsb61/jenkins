@@ -207,3 +207,53 @@ pipelineJob('Mutable/All-Infra-Destroy') {
     }
   }
 }
+
+/////////////////////
+
+folder('Immutable') {
+  displayName('Immutable')
+  description('Immutable')
+}
+
+pipelineJob('Immutable/All-Infra-Create') {
+  configure { flowdefinition ->
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+      'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+        'userRemoteConfigs' {
+          'hudson.plugins.git.UserRemoteConfig' {
+            'url'('https://github.com/raghudevopsb61/jenkins.git')
+          }
+        }
+        'branches' {
+          'hudson.plugins.git.BranchSpec' {
+            'name'('*/main')
+          }
+        }
+      }
+      'scriptPath'('Jenkinsfile-Immutable-All-in-one-Infra-Create')
+      'lightweight'(true)
+    }
+  }
+}
+
+pipelineJob('Immutable/All-Infra-Destroy') {
+  configure { flowdefinition ->
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+      'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+        'userRemoteConfigs' {
+          'hudson.plugins.git.UserRemoteConfig' {
+            'url'('https://github.com/raghudevopsb61/jenkins.git')
+          }
+        }
+        'branches' {
+          'hudson.plugins.git.BranchSpec' {
+            'name'('*/main')
+          }
+        }
+      }
+      'scriptPath'('Jenkinsfile-Immutable-All-in-one-Infra-Destroy')
+      'lightweight'(true)
+    }
+  }
+}
+
