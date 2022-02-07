@@ -135,7 +135,7 @@ pipeline {
         stage('ALB') {
           steps {
             dir('alb') {
-              git branch: 'main', url: "https://github.com/raghudevopsb61/terrafrom-mutable-alb.git"
+              git branch: 'main', url: "https://github.com/raghudevopsb61/terrafrom-immutable-alb.git"
               sh '''
                 terraform init -backend-config=env/${ENV}-backend.tfvars
                 terraform destroy -auto-approve -var-file=env/${ENV}.tfvars
