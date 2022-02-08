@@ -35,6 +35,16 @@ pipeline {
       }
     }
 
+    stage('Instance Refresh'){
+      steps {
+        dir('code'){
+          sh '''
+            aws autoscaling start-instance-refresh --auto-scaling-group-name ${COMPONENT}-${ENV}
+          '''
+        }
+      }
+    }
+
 
   }
 
