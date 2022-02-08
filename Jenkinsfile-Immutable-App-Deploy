@@ -38,7 +38,7 @@ pipeline {
     stage('Instance Refresh'){
       steps {
           sh '''
-            ls
+            bash instance-refresh.sh ${COMPONENT}-${ENVIRONMENT}
             #aws autoscaling start-instance-refresh --auto-scaling-group-name ${COMPONENT}-${ENVIRONMENT}
           '''
       }
