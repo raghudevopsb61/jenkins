@@ -42,8 +42,7 @@ pipeline {
       }
       steps {
           sh '''
-echo hai
-            #bash instance-refresh.sh ${COMPONENT}-${ENVIRONMENT}
+            bash instance-refresh.sh ${COMPONENT}-${ENVIRONMENT}
             #aws autoscaling start-instance-refresh --auto-scaling-group-name ${COMPONENT}-${ENVIRONMENT}
           '''
       }
